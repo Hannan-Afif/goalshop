@@ -1,10 +1,8 @@
-- Cara implemntasi checklist step-by-step, saya tidak hanya mengikuti tutorial. Namun saya juga berusaha untuk memahami apa yang terjadi dan bagaimana cara kerjanya.
+- Cara implementasi checklist step-by-step, saya tidak hanya mengikuti tutorial. Namun saya juga berusaha untuk memahami apa yang terjadi dan bagaimana cara kerjanya.
 
-___
+---
 
 - Client request -> Django project -> urls.py -> views.py -> models.py (optional) -> HTML templates -> response ke client
-
-### PENJELASAN
 
 1. **urls.py** : Menentukan rute mana yang perlu dijalankan berdasarkan request dari client.
 2. **views.py** : Berdasarkan rute yang dipilih, jalankan fungsi yang sesuai dengan rute.
