@@ -1,8 +1,6 @@
-# ANSWER
-
 - Cara implemntasi checklist step-by-step, saya tidak hanya mengikuti tutorial. Namun saya juga berusaha untuk memahami apa yang terjadi dan bagaimana cara kerjanya.
 
----
+___
 
 - Client request -> Django project -> urls.py -> views.py -> models.py (optional) -> HTML templates -> response ke client
 
