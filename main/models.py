@@ -1,5 +1,7 @@
 import uuid
+from django.core.validators import MinValueValidator
 from django.db import models
+
 
 class Product(models.Model):
     CATEGORY_CHOICES = [
@@ -12,7 +14,7 @@ class Product(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255)
-    price = models.IntegerField(default=0)
+    price = models.IntegerField(null=False, validators=[MinValueValidator(0)])
     description = models.TextField(default="")
     thumbnail = models.URLField(blank=True, null=True)
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='accessory')
