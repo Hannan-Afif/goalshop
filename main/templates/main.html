@@ -24,8 +24,7 @@
   <h2><a href="{% url 'main:show_product' product.id %}">{{ product.name }}</a></h2>
 
   <p><b>{{ product.get_category_display }}</b>{% if product.is_featured %} | 
-    <b>Featured</b>{% endif %}{% if product.is_product_hot %} | 
-    <b>Hot</b>{% endif %} | Views: {{ product.product_views }}</p>
+    <b>Featured</b>{% endif %}</p>
   
   <p><b>Price:</b> Rp{{ product.price }}</p>
 
