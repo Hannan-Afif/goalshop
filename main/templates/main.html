@@ -13,7 +13,19 @@
   <button>+ Add Product</button>
 </a>
 
+<a href="{% url 'main:logout' %}">
+  <button>Logout</button>
+</a>
+
+<h5>Sesi terakhir login: {{ last_login }}</h5>
+
 <hr>
+<a href="?filter=all">
+    <button type="button">All Product</button>
+</a>
+<a href="?filter=my">
+    <button type="button">My Product</button>
+</a> 
 
 {% if not product_list %}
 <p>Belum ada data produk pada Goalshop.</p>

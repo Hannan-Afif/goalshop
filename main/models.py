@@ -1,9 +1,11 @@
 import uuid
+from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator
 from django.db import models
 
 
 class Product(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     CATEGORY_CHOICES = [
         ('ball', 'Football'),
         ('jersey', 'Jersey'),
