@@ -1,56 +1,57 @@
-<h1>Goalshop</h1>
+{% extends 'base.html' %}
+{% load static %}
 
-<h5>NPM: </h5>
-<p>{{ npm }}</p>
+{% block meta %}
+<title>Goalshop</title>
+{% endblock meta %}
 
-<h5>Name:</h5>
-<p>{{ name }}</p>
+{% block content %}
+{% include 'navbar.html' %}
+<div class="bg-gray-50 w-full pt-16 min-h-screen">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-<h5>Class:</h5>
-<p>{{ class }}</p>
+    <!-- Header Section -->
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">Product</h1>
+      <p class="text-gray-600">Stay updated with the latest product</p>
+    </div>
 
-<a href="{% url 'main:create_product' %}">
-  <button>+ Add Product</button>
-</a>
+    <!-- Filter Section -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 bg-white rounded-lg border border-gray-200 p-4">
+      <div class="flex space-x-3 mb-4 sm:mb-0">
+        <a href="?" class="{% if request.GET.filter == 'all' or not request.GET.filter  %} bg-slate-800 text-white{% else %}bg-white text-gray-700 border border-gray-300{% endif %} px-4 py-2 rounded-md font-medium transition-colors hover:bg-slate-700 hover:text-white">
+          All Product
+        </a>
+        <a href="?filter=my" class="{% if request.GET.filter == 'my' %} bg-slate-800 text-white{% else %}bg-white text-gray-700 border border-gray-300{% endif %} px-4 py-2 rounded-md font-medium transition-colors hover:bg-slate-700 hover:text-white">
+          My Product
+        </a>
+      </div>
+      {% if user.is_authenticated %}
+        <div class="text-sm text-gray-500">
+          Last login: {{ last_login }}
+        </div>
+      {% endif %}
+    </div>
 
-<a href="{% url 'main:logout' %}">
-  <button>Logout</button>
-</a>
-
-<h5>Sesi terakhir login: {{ last_login }}</h5>
-
-<hr>
-<a href="?filter=all">
-    <button type="button">All Product</button>
-</a>
-<a href="?filter=my">
-    <button type="button">My Product</button>
-</a> 
-
-{% if not product_list %}
-<p>Belum ada data produk pada Goalshop.</p>
-{% else %}
-
-{% for product in product_list %}
-<div>
-  <h2><a href="{% url 'main:show_product' product.id %}">{{ product.name }}</a></h2>
-
-  <p><b>{{ product.get_category_display }}</b>{% if product.is_featured %} | 
-    <b>Featured</b>{% endif %}</p>
-  
-  <p><b>Price:</b> Rp{{ product.price }}</p>
-
-  {% if product.thumbnail %}
-  <img src="{{ product.thumbnail }}" alt="thumbnail" width="150" height="100">
-  <br />
-  {% endif %}
-
-  <p>{{ product.description|truncatewords:25 }}...</p>
-
-  <p><a href="{% url 'main:show_product' product.id %}"><button>Read More</button></a></p>
+    <!-- Product Grid -->
+    {% if not product_list %}
+      <div class="bg-white rounded-lg border border-gray-200 p-12 text-center">
+        <div class="w-32 h-32 mx-auto mb-4">
+          <img src="{% static 'image/no_product.png' %}" alt="No product available" class="w-full h-full object-contain">
+        </div>
+        <h3 class="text-lg font-medium text-gray-900 mb-2">No product found</h3>
+        <p class="text-gray-500 mb-6">Add your first product.</p>
+        <a href="{% url 'main:create_product' %}" class="inline-flex items-center px-4 py-2 bg-slate-800 text-white rounded-md hover:bg-slate-700 transition-colors">
+          Add Product
+        </a>
+      </div>
+    {% else %}
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for product in product_list %}
+          {% include 'card_product.html' with product=product %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
 </div>
-
-<hr>
-{% endfor %}
-
-{% endif %}
+{% endblock content %}

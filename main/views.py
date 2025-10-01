@@ -9,8 +9,6 @@ from django.core import serializers
 from django.shortcuts import render, redirect, get_object_or_404
 from main.forms import ProductForm
 from main.models import Product
-# from django.http import HttpResponse
-# from models import Employee
 
 @login_required(login_url='/login')
 def show_main(request):
@@ -41,7 +39,7 @@ def create_product(request):
         return redirect('main:show_main')
 
     context = {'form': form}
-    return render(request, "create_product.html", context)
+    return render(request, "create_product.html", context) 
 
 @login_required(login_url='/login')
 def show_product(request, id):
@@ -88,6 +86,24 @@ def logout_user(request):
     response.delete_cookie('last_login')
     return response
 
+def edit_product(request, id):
+    product = get_object_or_404(Product, pk=id)
+    form = ProductForm(request.POST or None, instance=product)
+    if form.is_valid() and request.method == 'POST':
+        form.save()
+        return redirect('main:show_main')
+
+    context = {
+        'form': form
+    }
+
+    return render(request, "edit_product.html", context)
+
+def delete_product(request, id):
+    product = get_object_or_404(Product, pk=id)
+    product.delete()
+    return HttpResponseRedirect(reverse('main:show_main'))
+
 def show_xml(request):
      product_list = Product.objects.all()
      xml_data = serializers.serialize("xml", product_list)
@@ -113,6 +129,3 @@ def show_json_by_id(request, product_id):
        return HttpResponse(json_data, content_type="application/json")
    except Product.DoesNotExist:
        return HttpResponse(status=404)
-# def add_employee(request):
-#     employee = Employee.objects.create(name = "test", age = 10, persona = "test")
-#     return render(request, "test.html", context={'name': employee.name, 'age':employee.age, 'persona':employee.persona})

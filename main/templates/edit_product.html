@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block meta %}
-<title>Add Product - Goalshop</title>
+<title>Edit Product - Football Product</title>
 {% endblock meta %}
 
 {% block content %}
@@ -17,8 +19,8 @@
     <!-- Form -->
     <div class="bg-white rounded-lg border border-gray-200 p-6 sm:p-8 form-style">
       <div class="mb-8">
-        <h1 class="text-2xl font-bold text-gray-900 mb-2">Add New Product</h1>
-        <p class="text-gray-600">Showcase your product and share it with Goalshop buyers</p>
+        <h1 class="text-2xl font-bold text-gray-900 mb-2">Edit Product</h1>
+        <p class="text-gray-600">Update your product</p>
       </div>
       
       <form method="POST" class="space-y-6">
@@ -44,8 +46,8 @@
           <a href="{% url 'main:show_main' %}" class="order-2 sm:order-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-md font-medium hover:bg-gray-50 transition-colors text-center">
             Cancel
           </a>
-          <button type="submit" class="order-1 sm:order-2 flex-1 bg-slate-800 text-white px-6 py-3 rounded-md font-medium hover:bg-slate-700 transition-colors">
-            Add Product
+          <button type="submit" class="order-1 sm:order-2 flex-1 bg-slate-700 text-white px-6 py-3 rounded-md font-medium hover:bg-slate-800 transition-colors">
+            Update Product
           </button>
         </div>
       </form>

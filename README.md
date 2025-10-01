@@ -140,4 +140,90 @@ Cara Django menangani keamanan cookie:
 
 Saya mengimplementasi checklist step-by-step dengan tidak hanya mengikuti tutorial, Namun saya juga berusaha untuk memahami apa yang terjadi dan bagaimana cara kerjanya dari internet ataupun memanfaatkan AI tools.
 
+## TUGAS 5
+
+Urutan prioritas pengambilan CSS selector:
+1. !important
+2. Inline style (langsung di atribut elemen)
+3. Selector berdasarkan ID
+4. Selector berdasarkan Class, Pseudo-class, dan Attribute
+5. Selector berdasarkan Tag / Elemen / Pseudo-element
+6. Jika sama, lihat urutan penulisan (yang terakhir menang)
+
+
+---
+
+Responsive design penting karena pengguna dapat mengakses web dari berbagai perangkat, seperti laptop, tablet, smartphone, bahkan layar besar seperti TV. Kalau desain tidak responsif, tampilan bisa berantakan, sulit dibaca,dan membuat pengalaman pengguna (UX) menjadi buruk.
+
+Contoh aplikasi yang sudah menerapkan responsive design:
+1. Shopee
+2. Tokopedia
+3. dan sebagainya.
+
+Contoh aplikasi yang belum menerapkan responsive design:
+1. Situs forum lama yang sudah tidak aktif, karena ada kemungkinan website dibuat saat keahlian untuk membuat responsive design masih minim.
+
+---
+
+Margin:
+- Area luar elemen.
+- Memberikan jarak antar elemen.
+- Tidak terlihat (transparan).
+
+```css
+div {
+  margin: 20px; /* jarak luar 20px dari elemen lain */
+}
+```
+Border:
+- Garis yang membungkus elemen (antara margin dan padding).
+- Bisa diberi warna, ketebalan, dan gaya.
+
+```css
+div {
+  border: 2px solid black; /* garis hitam 2px solid */
+}
+```
+
+Padding:
+- Area dalam elemen.
+- Memberi jarak antara content (teks/gambar) dengan border.
+- Membuat isi elemen terlihat tidak padat.
+
+```css
+div {
+  padding: 15px; /* jarak isi dengan border */
+}
+```
+
+---
+
+Flexbox adalah sistem layout 1 dimensi(satu arah, baris atau kolom).
+
+Konsep utamanya:
+- Container → elemen yang diberi display: flex;
+- Items → elemen di dalamnya otomatis jadi fleksibel.
+- Arah (main axis & cross axis) → bisa horizontal (row) atau vertikal (column).
+
+Kegunaannya:
+- Navbar yang rapi.
+- Centering konten secara mudah (horizontal & vertikal).
+- Mengatur button, card, atau list item yang fleksibel.
+
+Grid layout adalah sistem layout 2 dimensi (baris dan kolom).
+
+Konsep utamanya:
+- Container → elemen dengan display: grid;
+- Grid Lines → garis pembagi baris dan kolom.
+- Grid Track → baris/kolom tunggal.
+- Grid Area → area gabungan dari beberapa cell.
+
+Kegunaannya:
+- Layout halaman penuh (header, sidebar, main, footer).
+- Galeri gambar multi-kolom.
+- Dashboard dengan banyak panel.
+
+--- 
+
+Saya mengimplementasi checklist step-by-step dengan tidak hanya mengikuti tutorial, Namun saya juga berusaha untuk memahami apa yang terjadi dan bagaimana cara kerjanya dari internet ataupun memanfaatkan AI tools. Saya juga mencari warna dan design terbaik yang cocok bagi saya sebagai warna untuk websitenya.
 

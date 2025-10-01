@@ -7,7 +7,7 @@ from django.db import models
 class Product(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     CATEGORY_CHOICES = [
-        ('ball', 'Football'),
+        ('ball', 'Ball'),
         ('jersey', 'Jersey'),
         ('shoes', 'Shoes'),
         ('accessory', 'Accessory'),
@@ -25,15 +25,7 @@ class Product(models.Model):
     
     def __str__(self):
         return self.name
-
-    @property
-    def is_product_hot(self):
-        return self.product_views > 20
         
     def increment_views(self):
         self.product_views += 1
         self.save()
-# class Employee(models.Model):
-#     name = models.CharField(max_length=100)
-#     age = models.IntegerField()
-#     persona = models.TextField(default="")
