@@ -104,4 +104,47 @@
     </div>
   </div>
 </div>
+<script>
+  document.getElementById('registerForm').addEventListener('submit', async function(e) {
+    e.preventDefault(); // Prevent the form from submitting the traditional way
+
+    const form = e.target;
+    const formData = new FormData(form);
+    const messageDiv = document.getElementById('registerMessage');
+    
+    // Add CSRF token
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    
+    try {
+      const response = await fetch("{% url 'main:ajax_register' %}", {
+            method: "POST",
+            headers: {
+              'X-CSRFToken': csrfToken,
+            },
+            body: formData
+          });
+          
+          const result = await response.json();
+          console.log(result);
+          
+          
+          if (result.success) {
+            messageDiv.className = 'mt-4 text-center text-sm font-medium text-green-600';
+            messageDiv.textContent = 'Account created successfully! Redirecting to login...';
+            
+            // Redirect to login page after a short delay
+            setTimeout(() => {
+              window.location.href = "{% url 'main:login' %}";
+            }, 2000); // 2-second delay
+          } else {
+            messageDiv.className = 'mt-4 text-center text-sm font-medium text-red-600';
+            messageDiv.textContent = result.error || 'Registration failed. Please try again.';
+          }
+        } catch (error) {
+          messageDiv.className = 'mt-4 text-center text-sm font-medium text-red-600';
+          messageDiv.textContent = 'An unexpected error occurred. Please check your connection and try again.';
+          console.error('Registration error:', error);
+        }
+      });
+    </script>
 {% endblock content %}

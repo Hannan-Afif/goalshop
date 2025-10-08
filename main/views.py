@@ -11,6 +11,7 @@ from django.core import serializers
 from main.forms import ProductForm
 from main.models import Product
 from django.urls import reverse
+from django.contrib.auth.models import User
 import datetime
 
 
@@ -220,7 +221,7 @@ def ajax_register(request):
             return JsonResponse({'success': False, 'error': 'Username already exists.'})
 
         # Create the user
-        user = User.objects.create_user(username=username, password=password1)
+        User.objects.create_user(username=username, password=password1)
         return JsonResponse({'success': True, 'message': 'Account created successfully!'})
     
     return JsonResponse({'success': False, 'error': 'Invalid request method.'})
