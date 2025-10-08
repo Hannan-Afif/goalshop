@@ -227,3 +227,58 @@ Kegunaannya:
 
 Saya mengimplementasi checklist step-by-step dengan tidak hanya mengikuti tutorial, Namun saya juga berusaha untuk memahami apa yang terjadi dan bagaimana cara kerjanya dari internet ataupun memanfaatkan AI tools. Saya juga mencari warna dan design terbaik yang cocok bagi saya sebagai warna untuk websitenya.
 
+## TUGAS 6
+
+Synchronous request
+
+- permintaan yang dijalankan secara berurutan, artinya program akan menunggu hingga permintaan selesai sebelum melanjutkan ke kode berikutnya, sehingga bisa membuat aplikasi terblokir sementara menunggu respons.
+Asynchronous request
+
+- permintaan yang dijalankan tanpa menunggu respons, sehingga program bisa melanjutkan eksekusi kode lain sementara permintaan diproses, membuat aplikasi lebih responsif meski alurnya lebih kompleks.
+
+---
+
+Cara AJAX bekerja di Django (alur request-response):
+1. Client side (Browser/JS) -> Kirim request AJAX ke server (GET/POST).
+2. Server side (Django view) -> Proses request, ambil data, dan buat JsonResponse.
+3. Server mengirim respons.
+4. Client Side (Browser/JS) -> menerima respons JSON dengan memperbarui tampilan tanpa reload halaman.
+
+---
+
+Keuntungan menggunakan AJAX dibandingkan render biasa di Django:
+1. Tanpa reload halaman
+- AJAX memungkinkan data diperbarui atau dikirim ke server tanpa memuat ulang seluruh halaman, sehingga UX lebih lancar.
+2. Responsif dan cepat
+- Hanya data yang diperlukan yang dikirim dan diterima, bukan seluruh halaman HTML, sehingga waktu loading lebih singkat.
+3. Interaksi Dinamis
+- Memudahkan membuat fitur interaktif seperti live search, form validasi real-time, atau update konten otomatis.
+4. Hemat Bandwidth
+- Karena hanya data yang dikirim, penggunaan bandwidth lebih efisien dibanding render ulang seluruh halaman HTML.
+5. User Experience lebih baik
+- User tidak terganggu dengan reload halaman yang penuh, sehingga membuat website terasa lebih modern dan responsif.
+
+---
+
+Cara memastikan keamanan saat menggunakan AJAX untuk fitur Login dan Register di Django:
+1. Gunakan HTTPS.
+2. Gunakan CSRF Token.
+3. Validasi input di server.
+4. Gunakan password hashing, dsb.
+
+---
+
+AJAX mempengaruhi User Experience pada website dengan:
+1. Tanpa reload halaman
+2. Responsif dan cepat
+3. Interaksi Dinamis
+4. Hemat Bandwidth
+5. User Experience lebih baik
+
+
+
+
+
+
+
+
