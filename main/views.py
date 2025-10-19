@@ -200,7 +200,9 @@ def ajax_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return JsonResponse({'success': True})
+            response = JsonResponse({'success': True})
+            response.set_cookie('last_login', str(datetime.datetime.now()))
+            return response
         else:
             return JsonResponse({'success': False, 'error': 'Invalid username or password'})
     return JsonResponse({'success': False, 'error': 'Invalid request method'})

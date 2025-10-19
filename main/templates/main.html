@@ -30,6 +30,9 @@
         <a id="filter-my" class="bg-white text-gray-700 border border-gray-300 px-4 py-2 rounded-md font-medium transition-colors hover:bg-slate-700 hover:text-white">
           My Product
         </a>
+        <button id="sort-a" class="bg-white text-gray-700 border border-gray-300 px-4 py-2 rounded-md font-medium transition-colors hover:bg-slate-700 hover:text-white">
+          ↓↑
+        </button>
       </div>
       <div class="flex items-center space-x-4">
         <a onclick="location.reload()" class="bg-white text-gray-700 border border-gray-300 px-4 py-2 rounded-md font-medium transition-colors hover:bg-slate-700 hover:text-white">
@@ -85,9 +88,11 @@ const emptyStateDisplay = document.getElementById('empty');
 const productGridContainer = document.getElementById('grid');
 const showAllProductButton = document.getElementById('filter-all');
 const showMyProductButton = document.getElementById('filter-my');
+const showSorting = document.getElementById('sort-a');
 
 // State Variables
 let activeFilter = 'all';
+let sorted = -1;
 let allProductData = [];
 
 // Update filter button appearance
@@ -101,6 +106,10 @@ function updateFilterButtonsAppearance() {
     showMyProductButton.className = 'bg-slate-800 text-white px-4 py-2 rounded-md font-medium transition-colors hover:bg-slate-700';
     showAllProductButton.className = 'bg-white text-gray-700 border border-gray-300 px-4 py-2 rounded-md font-medium transition-colors hover:bg-slate-700 hover:text-white';
   }
+
+  if (sorted === 0 || sorted === 1){
+    showSorting.className = 'bg-slate-800 text-white px-4 py-2 rounded-md font-medium transition-colors hover:bg-slate-700';
+  } 
 }
 
 // Show/hide page sections
@@ -244,10 +253,15 @@ function filterAndDisplayProduct() {
     ? allProductData 
     : allProductData.filter(product => Number(product.user_id) === Number(CURRENT_USER_ID));
   
-  if (filteredProduct.length === 0) {
+  const sortedProduct = filteredProduct;
+  if (sorted !== -1){
+    const sortedProduct = sorted === 0 ? filteredProduct.sort((a, b) => (b.price-a.price)) : filteredProduct.sort((a, b) => (a.price-b.price));
+  }
+  if (sortedProduct.length === 0) {
     displayPageSection({ showEmpty: true });
-  } else {
-    renderAllProductCards(filteredProduct);
+  } 
+  else {
+    renderAllProductCards(sortedProduct);
     displayPageSection({ showGrid: true });
   }
 }
@@ -286,10 +300,17 @@ function handleShowMyProductClick() {
   filterAndDisplayProduct();
 }
 
+function handleSorting(){
+  if (sorted === -1) sorted = 1;
+  else sorted ^= 1;
+  filterAndDisplayProduct();
+}
+
 // Initialize page
 function initializeProductPage() {
   showAllProductButton.addEventListener('click', handleShowAllProductClick);
   showMyProductButton.addEventListener('click', handleShowMyProductClick);
+  showSorting.addEventListener('click', handleSorting);
   
   fetchProductFromServer();
 }

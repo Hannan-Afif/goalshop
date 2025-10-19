@@ -231,7 +231,8 @@ Saya mengimplementasi checklist step-by-step dengan tidak hanya mengikuti tutori
 
 Synchronous request
 
-- permintaan yang dijalankan secara berurutan, artinya program akan menunggu hingga permintaan selesai sebelum melanjutkan ke kode berikutnya, sehingga bisa membuat aplikasi terblokir sementara menunggu respons.
+- permintaan yang dijalankan secara berurutan, artinya program akan menunggu hingga permintaan selesai sebelum melanjutkan ke kode berikutnya, sehingga bisa membuat aplikasi terblokir sementara menunggu respons.\
+
 Asynchronous request
 
 - permintaan yang dijalankan tanpa menunggu respons, sehingga program bisa melanjutkan eksekusi kode lain sementara permintaan diproses, membuat aplikasi lebih responsif meski alurnya lebih kompleks.
